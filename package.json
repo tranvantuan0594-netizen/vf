@@ -33,7 +33,7 @@
     "@astrojs/node": "^9.5.3",
     "@astrojs/react": "^4.4.2",
     "@nanostores/react": "^1.0.0",
-    "@tailwindcss/vite": "^4.1.18",
+    "@tailwindcss/vite": "^4.2.1",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "astro": "^5.17.2",
