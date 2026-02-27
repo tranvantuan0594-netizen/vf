@@ -36,7 +36,7 @@
     "@tailwindcss/vite": "^4.1.18",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "astro": "^5.17.2",
+    "astro": "^5.18.0",
     "leaflet": "^1.9.4",
     "mqtt": "^5.15.0",
     "nanostores": "^1.1.0",
