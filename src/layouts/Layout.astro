@@ -1,0 +1,100 @@
+---
+interface Props {
+	title?: string;
+	description?: string;
+	ogImage?: string;
+}
+
+const {
+	title = "VinFast Dashboard — Real-time EV Telemetry",
+	description = "Open-source real-time dashboard for VinFast electric vehicles. Live battery, TPMS, charging history, GPS location, and Digital Twin via MQTT telemetry. Built by VF9 Club Vietnam.",
+	ogImage = "/og-image.png",
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, "https://dashboard.vf9.club");
+const ogImageURL = new URL(ogImage, "https://dashboard.vf9.club").href;
+
+import '../styles/global.css';
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>{title}</title>
+
+		<!-- SEO -->
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonicalURL.href} />
+		<meta name="robots" content="index, follow" />
+		<meta name="author" content="VF9 Club Vietnam" />
+		<meta name="keywords" content="VinFast, dashboard, EV, electric vehicle, telemetry, MQTT, battery, TPMS, VF9, VF8, VF7, VF6, VF5, VF3, charging history, digital twin, open source" />
+
+		<!-- Open Graph (Facebook, LinkedIn, etc.) -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalURL.href} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={ogImageURL} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content="VinFast Dashboard showing real-time battery, tire pressure, and vehicle status" />
+		<meta property="og:site_name" content="VinFast Dashboard" />
+		<meta property="og:locale" content="vi_VN" />
+
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImageURL} />
+		<meta name="twitter:image:alt" content="VinFast Dashboard showing real-time battery, tire pressure, and vehicle status" />
+
+		<!-- Theme & PWA -->
+		<meta name="theme-color" content="#ffffff" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+		<meta name="apple-mobile-web-app-title" content="VF Dashboard" />
+
+		<!-- Favicons -->
+		<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<link rel="manifest" href="/site.webmanifest" />
+
+		<!-- Structured Data (JSON-LD) -->
+		<script type="application/ld+json" set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "WebApplication",
+			"name": "VinFast Dashboard",
+			"alternateName": "VFDashboard",
+			"url": "https://dashboard.vf9.club",
+			"description": description,
+			"applicationCategory": "UtilitiesApplication",
+			"operatingSystem": "Web",
+			"offers": {
+				"@type": "Offer",
+				"price": "0",
+				"priceCurrency": "USD"
+			},
+			"author": {
+				"@type": "Organization",
+				"name": "VF9 Club Vietnam",
+				"url": "https://vf9.club"
+			},
+			"screenshot": ogImageURL,
+			"featureList": [
+				"Real-time MQTT telemetry",
+				"Battery state of charge monitoring",
+				"Tire pressure monitoring (TPMS)",
+				"GPS vehicle location",
+				"Charging session history",
+				"Digital Twin vehicle visualization",
+				"Multi-vehicle support"
+			]
+		})} />
+	</head>
+	<body class="bg-gray-50 h-[100dvh] w-screen overflow-hidden md:h-auto md:w-auto md:overflow-y-auto text-gray-900 selection:bg-blue-500 selection:text-white">
+        <slot />
+	</body>
+</html>

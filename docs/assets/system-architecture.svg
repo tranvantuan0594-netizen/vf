@@ -1,0 +1,244 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 880" font-family="'Segoe UI', system-ui, -apple-system, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <filter id="sh" x="-3%" y="-3%" width="106%" height="110%">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#000" flood-opacity="0.35"/>
+    </filter>
+    <!-- Arrow markers - larger for visibility -->
+    <marker id="aB" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#60a5fa"/>
+    </marker>
+    <marker id="aO" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#fb923c"/>
+    </marker>
+    <marker id="aG" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#34d399"/>
+    </marker>
+    <marker id="aP" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#c4b5fd"/>
+    </marker>
+    <marker id="aR" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#fca5a5"/>
+    </marker>
+  </defs>
+
+  <!-- ▓▓ Background ▓▓ -->
+  <rect width="1200" height="880" rx="16" fill="url(#bg)"/>
+
+  <!-- ▓▓ Title ▓▓ -->
+  <text x="600" y="40" text-anchor="middle" fill="#f1f5f9" font-size="24" font-weight="700" letter-spacing="0.5">VFDashboard — System Architecture</text>
+  <text x="600" y="62" text-anchor="middle" fill="#64748b" font-size="13">Real-time MQTT Telemetry · Cloudflare Edge · VinFast Connected Car API</text>
+
+  <!-- ══════════════════════════════════════════════════ -->
+  <!-- ▓▓ LAYER 1 — CLIENT (Browser)                  ▓▓ -->
+  <!-- ══════════════════════════════════════════════════ -->
+  <rect x="50" y="85" width="1100" height="150" rx="14" fill="#1e293b" stroke="#334155" stroke-width="1" filter="url(#sh)"/>
+  <text x="72" y="105" fill="#94a3b8" font-size="11" font-weight="700" letter-spacing="2">BROWSER</text>
+
+  <!-- Box 1: UI Components -->
+  <rect x="72" y="115" width="310" height="105" rx="10" fill="#172554" stroke="#2563eb" stroke-width="1.2"/>
+  <text x="227" y="138" text-anchor="middle" fill="#93c5fd" font-size="14" font-weight="700">React + Astro 5</text>
+  <text x="92" y="160" fill="#94a3b8" font-size="11">CarStatus · DigitalTwin · SystemHealth</text>
+  <text x="92" y="177" fill="#94a3b8" font-size="11">ControlGrid · ChargingHistory</text>
+  <text x="92" y="194" fill="#94a3b8" font-size="11">DashboardController · TelemetryDrawer</text>
+  <text x="92" y="210" fill="#64748b" font-size="10">Tailwind CSS · Mobile-first responsive</text>
+
+  <!-- Box 2: State Management -->
+  <rect x="402" y="115" width="250" height="105" rx="10" fill="#172554" stroke="#2563eb" stroke-width="1.2"/>
+  <text x="527" y="138" text-anchor="middle" fill="#93c5fd" font-size="14" font-weight="700">Nanostores</text>
+  <text x="422" y="160" fill="#cbd5e1" font-size="11">vehicleStore.ts</text>
+  <text x="422" y="177" fill="#94a3b8" font-size="10.5">  Vehicle data + updateFromMqtt()</text>
+  <text x="422" y="194" fill="#cbd5e1" font-size="11">mqttStore.ts</text>
+  <text x="422" y="210" fill="#94a3b8" font-size="10.5">  connected | connecting | error</text>
+
+  <!-- Box 3: MQTT Client -->
+  <rect x="672" y="115" width="220" height="105" rx="10" fill="#1e1338" stroke="#7c3aed" stroke-width="1.2"/>
+  <text x="782" y="138" text-anchor="middle" fill="#c4b5fd" font-size="14" font-weight="700">MQTT Client</text>
+  <text x="692" y="160" fill="#94a3b8" font-size="11">mqttClient.js</text>
+  <text x="692" y="177" fill="#94a3b8" font-size="10.5">AWS IoT WebSocket (WSS)</text>
+  <text x="692" y="194" fill="#94a3b8" font-size="10.5">SigV4 signed URL</text>
+  <text x="692" y="210" fill="#94a3b8" font-size="10.5">Auto-reconnect · 1h refresh</text>
+
+  <!-- Box 4: API Client -->
+  <rect x="912" y="115" width="220" height="105" rx="10" fill="#172554" stroke="#2563eb" stroke-width="1.2"/>
+  <text x="1022" y="138" text-anchor="middle" fill="#93c5fd" font-size="14" font-weight="700">API Client</text>
+  <text x="932" y="160" fill="#94a3b8" font-size="11">api.js</text>
+  <text x="932" y="177" fill="#94a3b8" font-size="10.5">authenticate · getVehicles</text>
+  <text x="932" y="194" fill="#94a3b8" font-size="10.5">registerResources (46 aliases)</text>
+  <text x="932" y="210" fill="#94a3b8" font-size="10.5">getChargingHistory</text>
+
+  <!-- ══════════════════════════════════════════════════ -->
+  <!-- ▓▓ ARROWS: Client → Edge                       ▓▓ -->
+  <!-- ══════════════════════════════════════════════════ -->
+
+  <!-- Arrow 1: API Client → API Proxy (vertical, shifted left) -->
+  <line x1="270" y1="235" x2="270" y2="300" stroke="#60a5fa" stroke-width="2.5" opacity="0.7" marker-end="url(#aB)"/>
+  <rect x="280" y="254" width="110" height="20" rx="5" fill="#0f172a" stroke="#334155" stroke-width="0.5"/>
+  <text x="335" y="268" text-anchor="middle" fill="#60a5fa" font-size="10" font-weight="600">fetch( )</text>
+
+  <!-- Arrow 2: API Client → Auth (vertical) -->
+  <line x1="560" y1="235" x2="560" y2="300" stroke="#60a5fa" stroke-width="2.5" opacity="0.7" marker-end="url(#aB)"/>
+
+  <!-- Arrow 3: API Client → MQTT Creds -->
+  <line x1="865" y1="235" x2="865" y2="300" stroke="#60a5fa" stroke-width="2.5" opacity="0.7" marker-end="url(#aB)"/>
+
+  <!-- Arrow 4: MQTT Client → AWS IoT Core DIRECT (bold, bypasses edge) -->
+  <!-- This is the real-time WebSocket — goes on the far right side, around the edge layer -->
+  <path d="M 782 220 L 782 257 Q 782 267 792 267 L 1160 267 Q 1170 267 1170 277 L 1170 570 Q 1170 580 1160 580 L 900 580" stroke="#c4b5fd" stroke-width="3" fill="none" opacity="0.8" marker-end="url(#aP)"/>
+  <rect x="1080" y="390" width="80" height="44" rx="6" fill="#0f172a" stroke="#7c3aed" stroke-width="0.8"/>
+  <text x="1120" y="408" text-anchor="middle" fill="#c4b5fd" font-size="10" font-weight="700">MQTT</text>
+  <text x="1120" y="424" text-anchor="middle" fill="#c4b5fd" font-size="10" font-weight="700">WSS</text>
+
+  <!-- ══════════════════════════════════════════════════ -->
+  <!-- ▓▓ LAYER 2 — EDGE (Cloudflare Pages)            ▓▓ -->
+  <!-- ══════════════════════════════════════════════════ -->
+  <rect x="50" y="300" width="1100" height="150" rx="14" fill="#1e293b" stroke="#334155" stroke-width="1" filter="url(#sh)"/>
+  <rect x="72" y="306" width="150" height="22" rx="6" fill="#f97316" opacity="0.12"/>
+  <text x="147" y="321" text-anchor="middle" fill="#fb923c" font-size="11" font-weight="700" letter-spacing="1">CLOUDFLARE</text>
+
+  <!-- Edge Box 1: API Proxy -->
+  <rect x="72" y="335" width="250" height="100" rx="10" fill="#271a08" stroke="#ea580c" stroke-width="1.2"/>
+  <text x="197" y="358" text-anchor="middle" fill="#fdba74" font-size="14" font-weight="700">API Proxy</text>
+  <text x="92" y="378" fill="#cbd5e1" font-size="11">proxy/[...path].js</text>
+  <text x="92" y="395" fill="#94a3b8" font-size="10.5">X-HASH + X-HASH-2 (HMAC-SHA256)</text>
+  <text x="92" y="412" fill="#94a3b8" font-size="10.5">Android headers injection</text>
+  <text x="92" y="427" fill="#64748b" font-size="10">Astro SSR on Workers</text>
+
+  <!-- Edge Box 2: Auth Endpoints -->
+  <rect x="342" y="335" width="250" height="100" rx="10" fill="#271a08" stroke="#ea580c" stroke-width="1.2"/>
+  <text x="467" y="358" text-anchor="middle" fill="#fdba74" font-size="14" font-weight="700">Auth Endpoints</text>
+  <text x="362" y="378" fill="#cbd5e1" font-size="11">login.js · refresh.js · logout.js</text>
+  <text x="362" y="395" fill="#94a3b8" font-size="10.5">HttpOnly secure cookies</text>
+  <text x="362" y="412" fill="#94a3b8" font-size="10.5">Auto-detect localhost</text>
+  <text x="362" y="427" fill="#64748b" font-size="10">Token rotation</text>
+
+  <!-- Edge Box 3: MQTT Credentials -->
+  <rect x="612" y="335" width="250" height="100" rx="10" fill="#271a08" stroke="#ea580c" stroke-width="1.2"/>
+  <text x="737" y="358" text-anchor="middle" fill="#fdba74" font-size="14" font-weight="700">MQTT Credentials</text>
+  <text x="632" y="378" fill="#cbd5e1" font-size="11">mqtt-credentials.js</text>
+  <text x="632" y="395" fill="#94a3b8" font-size="10.5">Cognito Identity → SigV4</text>
+  <text x="632" y="412" fill="#94a3b8" font-size="10.5">1-hour TTL credentials</text>
+  <text x="632" y="427" fill="#64748b" font-size="10">WebSocket URL signing</text>
+
+  <!-- Edge Box 4: KV Store -->
+  <rect x="882" y="335" width="250" height="100" rx="10" fill="#271a08" stroke="#ea580c" stroke-width="1.2"/>
+  <text x="1007" y="358" text-anchor="middle" fill="#fdba74" font-size="14" font-weight="700">KV Store</text>
+  <text x="902" y="378" fill="#cbd5e1" font-size="11">known-aliases.js</text>
+  <text x="902" y="395" fill="#94a3b8" font-size="10.5">Crowdsourced telemetry aliases</text>
+  <text x="902" y="412" fill="#94a3b8" font-size="10.5">Per-model, per-year keys</text>
+  <text x="902" y="427" fill="#64748b" font-size="10">30-day TTL</text>
+
+  <!-- ══════════════════════════════════════════════════ -->
+  <!-- ▓▓ ARROWS: Edge → Services                     ▓▓ -->
+  <!-- ══════════════════════════════════════════════════ -->
+
+  <!-- Arrow: API Proxy → VinFast API -->
+  <line x1="197" y1="435" x2="197" y2="520" stroke="#fb923c" stroke-width="2.5" opacity="0.7" marker-end="url(#aO)"/>
+  <rect x="207" y="462" width="140" height="20" rx="5" fill="#0f172a" stroke="#334155" stroke-width="0.5"/>
+  <text x="277" y="476" text-anchor="middle" fill="#fb923c" font-size="10" font-weight="600">X-HASH signed</text>
+
+  <!-- Arrow: Auth → Auth0 -->
+  <line x1="467" y1="435" x2="467" y2="520" stroke="#fca5a5" stroke-width="2.5" opacity="0.7" marker-end="url(#aR)"/>
+  <rect x="477" y="462" width="100" height="20" rx="5" fill="#0f172a" stroke="#334155" stroke-width="0.5"/>
+  <text x="527" y="476" text-anchor="middle" fill="#fca5a5" font-size="10" font-weight="600">OAuth2 ROPG</text>
+
+  <!-- Arrow: MQTT Creds → AWS Cognito -->
+  <line x1="737" y1="435" x2="737" y2="520" stroke="#c4b5fd" stroke-width="2.5" opacity="0.7" marker-end="url(#aP)"/>
+  <rect x="747" y="462" width="120" height="20" rx="5" fill="#0f172a" stroke="#334155" stroke-width="0.5"/>
+  <text x="807" y="476" text-anchor="middle" fill="#c4b5fd" font-size="10" font-weight="600">GetCredentials</text>
+
+  <!-- ══════════════════════════════════════════════════ -->
+  <!-- ▓▓ LAYER 3 — EXTERNAL SERVICES                 ▓▓ -->
+  <!-- ══════════════════════════════════════════════════ -->
+  <text x="72" y="510" fill="#94a3b8" font-size="11" font-weight="700" letter-spacing="2">SERVICES</text>
+
+  <!-- Service 1: VinFast Connected Car API -->
+  <rect x="72" y="520" width="250" height="110" rx="10" fill="#0a2518" stroke="#059669" stroke-width="1.2" filter="url(#sh)"/>
+  <text x="197" y="545" text-anchor="middle" fill="#6ee7b7" font-size="14" font-weight="700">VinFast API</text>
+  <text x="92" y="567" fill="#94a3b8" font-size="10.5">mobile.connected-car.vinfast.vn</text>
+  <text x="92" y="585" fill="#94a3b8" font-size="10.5">GET  user-vehicle</text>
+  <text x="92" y="601" fill="#94a3b8" font-size="10.5">POST list_resource (46 core aliases)</text>
+  <text x="92" y="617" fill="#94a3b8" font-size="10.5">POST charging-sessions/search</text>
+
+  <!-- Service 2: Auth0 -->
+  <rect x="342" y="520" width="250" height="110" rx="10" fill="#2a1215" stroke="#dc2626" stroke-width="1.2" filter="url(#sh)"/>
+  <text x="467" y="545" text-anchor="middle" fill="#fca5a5" font-size="14" font-weight="700">Auth0</text>
+  <text x="362" y="567" fill="#94a3b8" font-size="10.5">vin3s.au.auth0.com</text>
+  <text x="362" y="585" fill="#94a3b8" font-size="10.5">OAuth2 Resource Owner Password</text>
+  <text x="362" y="601" fill="#94a3b8" font-size="10.5">access_token + refresh_token</text>
+  <text x="362" y="617" fill="#64748b" font-size="10">→ HttpOnly cookies on edge</text>
+
+  <!-- Service 3: AWS IoT Core -->
+  <rect x="612" y="520" width="290" height="110" rx="10" fill="#1e1338" stroke="#7c3aed" stroke-width="1.2" filter="url(#sh)"/>
+  <text x="757" y="545" text-anchor="middle" fill="#c4b5fd" font-size="14" font-weight="700">AWS IoT Core</text>
+  <text x="632" y="567" fill="#94a3b8" font-size="10.5">prod.iot.connected-car.vinfast.vn</text>
+  <text x="632" y="585" fill="#94a3b8" font-size="10.5">MQTT over WebSocket (real-time)</text>
+  <text x="632" y="601" fill="#94a3b8" font-size="10.5">Telemetry: SOC, speed, temp, doors...</text>
+  <text x="632" y="617" fill="#64748b" font-size="10">First data ~500ms after connect</text>
+
+  <!-- Service 4: AWS Cognito -->
+  <rect x="922" y="520" width="210" height="110" rx="10" fill="#1e1338" stroke="#7c3aed" stroke-width="1.2" filter="url(#sh)"/>
+  <text x="1027" y="545" text-anchor="middle" fill="#c4b5fd" font-size="14" font-weight="700">AWS Cognito</text>
+  <text x="942" y="567" fill="#94a3b8" font-size="10.5">ap-southeast-1</text>
+  <text x="942" y="585" fill="#94a3b8" font-size="10.5">GetCredentialsForIdentity</text>
+  <text x="942" y="601" fill="#94a3b8" font-size="10.5">1-hour TTL (AWS fixed)</text>
+  <text x="942" y="617" fill="#64748b" font-size="10">Identity pool for MQTT auth</text>
+
+  <!-- ══════════════════════════════════════════════════ -->
+  <!-- ▓▓ ARROW: IoT Core ← T-Box                     ▓▓ -->
+  <!-- ══════════════════════════════════════════════════ -->
+  <line x1="757" y1="700" x2="757" y2="630" stroke="#34d399" stroke-width="3" opacity="0.7" marker-end="url(#aG)"/>
+  <rect x="767" y="652" width="120" height="20" rx="5" fill="#0f172a" stroke="#334155" stroke-width="0.5"/>
+  <text x="827" y="666" text-anchor="middle" fill="#34d399" font-size="10" font-weight="600">MQTT publish</text>
+
+  <!-- ══════════════════════════════════════════════════ -->
+  <!-- ▓▓ LAYER 4 — VEHICLE                           ▓▓ -->
+  <!-- ══════════════════════════════════════════════════ -->
+  <text x="72" y="695" fill="#94a3b8" font-size="11" font-weight="700" letter-spacing="2">VEHICLE</text>
+
+  <rect x="450" y="700" width="430" height="70" rx="12" fill="#1e293b" stroke="#334155" stroke-width="1" filter="url(#sh)"/>
+
+  <rect x="468" y="710" width="180" height="50" rx="8" fill="#0a2518" stroke="#059669" stroke-width="1"/>
+  <text x="558" y="732" text-anchor="middle" fill="#6ee7b7" font-size="13" font-weight="700">VinFast T-Box</text>
+  <text x="558" y="750" text-anchor="middle" fill="#64748b" font-size="10">OBD-II Telemetry Unit</text>
+
+  <rect x="668" y="710" width="195" height="50" rx="8" fill="#0a2518" stroke="#059669" stroke-width="1"/>
+  <text x="765" y="732" text-anchor="middle" fill="#6ee7b7" font-size="13" font-weight="700">CAN Bus → Cloud</text>
+  <text x="765" y="750" text-anchor="middle" fill="#64748b" font-size="10">SOC · Speed · Temp · TPMS</text>
+
+  <!-- ══════════════════════════════════════════════════ -->
+  <!-- ▓▓ LEGEND                                       ▓▓ -->
+  <!-- ══════════════════════════════════════════════════ -->
+  <line x1="50" y1="795" x2="1150" y2="795" stroke="#334155" stroke-width="0.5"/>
+
+  <text x="72" y="822" fill="#64748b" font-size="11" font-weight="600">Data Flows:</text>
+
+  <!-- REST -->
+  <line x1="172" y1="818" x2="202" y2="818" stroke="#60a5fa" stroke-width="2.5"/>
+  <text x="210" y="822" fill="#94a3b8" font-size="11">REST API</text>
+
+  <!-- Signed -->
+  <line x1="290" y1="818" x2="320" y2="818" stroke="#fb923c" stroke-width="2.5"/>
+  <text x="328" y="822" fill="#94a3b8" font-size="11">Signed Proxy</text>
+
+  <!-- MQTT -->
+  <line x1="432" y1="818" x2="462" y2="818" stroke="#c4b5fd" stroke-width="2.5"/>
+  <text x="470" y="822" fill="#94a3b8" font-size="11">MQTT Real-time</text>
+
+  <!-- OAuth -->
+  <line x1="590" y1="818" x2="620" y2="818" stroke="#fca5a5" stroke-width="2.5"/>
+  <text x="628" y="822" fill="#94a3b8" font-size="11">OAuth2</text>
+
+  <!-- Vehicle -->
+  <line x1="695" y1="818" x2="725" y2="818" stroke="#34d399" stroke-width="2.5"/>
+  <text x="733" y="822" fill="#94a3b8" font-size="11">Vehicle Telemetry</text>
+
+  <!-- Timing -->
+  <text x="1130" y="822" text-anchor="end" fill="#475569" font-size="10">list_resource ~100ms · First MQTT data ~500ms</text>
+
+  <!-- Subtle branding -->
+  <text x="600" y="860" text-anchor="middle" fill="#334155" font-size="10">VF9 Club Vietnam · Open Source · MIT License</text>
+</svg>

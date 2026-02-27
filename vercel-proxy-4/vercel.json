@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "regions": ["sin1"],
+  "routes": [
+    {
+      "src": "/api/vf-proxy/(.*)",
+      "dest": "/api/proxy.js"
+    },
+    {
+      "src": "/api/vf-auth",
+      "dest": "/api/auth.js"
+    },
+    {
+      "src": "/health",
+      "dest": "/api/health.js"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "vfdashboard-proxy",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Vercel backup proxy for VFDashboard — provides alternate egress IP for VinFast API",
+  "type": "module",
+  "scripts": {
+    "dev": "node test-server.js",
+    "deploy": "vercel --prod"
+  }
+}

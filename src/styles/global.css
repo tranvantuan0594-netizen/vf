@@ -1,0 +1,190 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 20px);
+  }
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+/* Custom Animations for Mobile Transitions */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUpSmall {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-in.fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-in.slide-in-from-bottom-8 {
+  animation: slideUp 0.5s ease-out forwards;
+}
+
+.animate-in.slide-in-from-bottom-2 {
+  animation: slideUpSmall 0.3s ease-out both;
+}
+
+.animate-in.slide-in-from-top-1 {
+  animation: slideDown 0.2s ease-out both;
+}
+
+.animate-in.zoom-in-95 {
+  animation: zoomIn 0.5s ease-out forwards;
+}
+
+/* Vehicle swipe slide-in animations */
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(80px) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-80px) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+.animate-slideInFromRight {
+  animation: slideInFromRight 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-slideInFromLeft {
+  animation: slideInFromLeft 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes bounce-subtle {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+.animate-bounce-subtle {
+  animation: bounce-subtle 2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(243, 244, 246, 1) 25%,
+    rgba(229, 231, 235, 1) 50%,
+    rgba(243, 244, 246, 1) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+@keyframes blurIn {
+  from { filter: blur(4px); opacity: 0; }
+  to { filter: blur(0); opacity: 1; }
+}
+
+.animate-blur-in {
+  animation: blurIn 0.4s ease-out forwards;
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 5px rgba(37, 99, 235, 0.2); }
+  50% { box-shadow: 0 0 15px rgba(37, 99, 235, 0.5); }
+}
+
+.animate-glow {
+  animation: glow 2s infinite ease-in-out;
+}
+
+.transition-all-custom {
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.tap-active:active {
+  transform: scale(0.95);
+  transition: transform 0.1s ease-out;
+}

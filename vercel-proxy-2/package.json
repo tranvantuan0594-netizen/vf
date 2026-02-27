@@ -1,0 +1,10 @@
+{
+  "name": "vfdashboard-proxy-2",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Vercel backup proxy #2 (Tokyo) for VFDashboard — alternate egress IP",
+  "type": "module",
+  "scripts": {
+    "deploy": "vercel --prod"
+  }
+}

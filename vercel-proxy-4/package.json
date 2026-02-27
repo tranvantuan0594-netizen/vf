@@ -1,0 +1,10 @@
+{
+  "name": "vfdashboard-proxy-4",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Vercel backup proxy #4 (Singapore) for VFDashboard",
+  "type": "module",
+  "scripts": {
+    "deploy": "vercel --prod"
+  }
+}
